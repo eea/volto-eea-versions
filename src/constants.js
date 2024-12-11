@@ -1,0 +1,1 @@
+export const GET_EEA_VERSIONS = 'GET_EEA_VERSIONS';

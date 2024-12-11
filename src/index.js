@@ -1,5 +1,12 @@
+import eeaVersionsReducer from './reducers';
+import installVersionsBlocks from './blocks';
 const applyConfig = (config) => {
-  return config;
+  config.addonReducers = {
+    ...(config.addonReducers || {}),
+    eeaVersionsReducer,
+  };
+
+  return installVersionsBlocks(config);
 };
 
 export default applyConfig;
