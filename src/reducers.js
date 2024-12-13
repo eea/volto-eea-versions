@@ -8,39 +8,31 @@ import { GET_EEA_VERSIONS } from './constants';
  * @returns {Object} New state.
  */
 export default function rawdata(state = {}, action = {}) {
-  let { result, url } = action;
+  let { result } = action;
 
   switch (action.type) {
     case `${GET_EEA_VERSIONS}_PENDING`:
       return {
         ...state,
-        [url]: {
-          ...state[url],
-          loading: true,
-          loaded: false,
-          error: undefined,
-        },
+
+        loading: true,
+        loaded: false,
+        error: undefined,
       };
     case `${GET_EEA_VERSIONS}_SUCCESS`:
       return {
         ...state,
-        [url]: {
-          ...state[url],
-          loading: false,
-          loaded: true,
-          error: undefined,
-          data: result,
-        },
+        loading: false,
+        loaded: true,
+        error: undefined,
+        data: result,
       };
     case `${GET_EEA_VERSIONS}_FAIL`:
       return {
         ...state,
-        [url]: {
-          ...state[url],
-          loading: false,
-          loaded: false,
-          error: action.error,
-        },
+        loading: false,
+        loaded: false,
+        error: action.error,
       };
     default:
       break;
