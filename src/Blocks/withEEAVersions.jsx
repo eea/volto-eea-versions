@@ -13,17 +13,15 @@ export function withEEAVersions(WrappedComponent) {
   }
 
   function Wrapped(props) {
-    const { path, params = {} } = props;
+    const { params = {} } = props;
+    const pathname = props.pathname || props.path;
 
-    const base_path = getBaseUrl(path);
+    const base_path = getBaseUrl(pathname);
 
     const dispatch = useDispatch();
     const versions = useSelector((state) => {
       return state.eeaVersions?.data;
     }, memoizedSelector);
-    console.log('props', props);
-    console.log('path', path);
-    console.log('base_path', base_path);
 
     // Only fetch if we don't have the data yet
     useDeepCompareEffect(() => {
