@@ -1,6 +1,7 @@
 import React from 'react';
 import { withEEAVersions } from './withEEAVersions';
 import { formattedDate } from './helpers';
+import { UniversalLink } from '@plone/volto/components';
 
 const AllVersions = (props) => {
   const olderVersions = props.versions?.older_versions?.items || [];
@@ -22,18 +23,24 @@ const AllVersions = (props) => {
       {newerVersions?.length > 0 &&
         newerVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
-            <a href={version['@id']} className="eea-versions-list-link">
+            <UniversalLink
+              href={version['@id']}
+              className="eea-versions-list-link"
+            >
               {version.title} {formattedDate(version.effective)}
-            </a>
+            </UniversalLink>
           </li>
         ))}
       <li>{`(current) ${title} ${currentEffective}`}</li>
       {olderVersions?.length > 0 &&
         olderVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
-            <a href={version['@id']} className="eea-versions-list-link">
+            <UniversalLink
+              href={version['@id']}
+              className="eea-versions-list-link"
+            >
               {version.title} {formattedDate(version.effective)}
-            </a>
+            </UniversalLink>
           </li>
         ))}
     </ul>

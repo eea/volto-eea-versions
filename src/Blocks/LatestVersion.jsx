@@ -1,6 +1,7 @@
 import React from 'react';
 import { withEEAVersions } from './withEEAVersions';
 import { formattedDate } from './helpers';
+import { UniversalLink } from '@plone/volto/components';
 
 const LatestVersion = (props) => {
   const version = props.versions?.newer_versions?.items[0];
@@ -17,9 +18,9 @@ const LatestVersion = (props) => {
   return version ? (
     <p className="report-latest-version">
       <strong>Latest version of this report: </strong>
-      <a href={version['@id']} className="eea-versions-list-link">
+      <UniversalLink href={version['@id']} className="eea-versions-list-link">
         {version.title} {formattedEffective}
-      </a>
+      </UniversalLink>
     </p>
   ) : (
     ''
