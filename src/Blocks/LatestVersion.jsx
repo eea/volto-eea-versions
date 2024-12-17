@@ -21,7 +21,9 @@ const LatestVersion = (props) => {
   const effectiveDate =
     formattedEffective && formattedEffective ? ' - ' + formattedEffective : '';
   const isEdit =
-    pathname.indexOf('/edit') > -1 || pathname.indexOf('/add') > -1;
+    pathname.endsWith('/edit') ||
+    pathname.endsWith('/add') ||
+    pathname.endsWith('/layout');
   if (isEdit && !version) {
     return <p>Latest version block edit</p>;
   }

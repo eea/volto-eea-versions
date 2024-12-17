@@ -23,7 +23,9 @@ const AllVersions = (props) => {
     formattedEffective && formattedEffective ? ' - ' + formattedEffective : '';
   const pathname = props.pathname || props.path || '';
   const isEdit =
-    pathname.indexOf('/edit') > -1 || pathname.indexOf('/add') > -1;
+    pathname.endsWith('/edit') ||
+    pathname.endsWith('/add') ||
+    pathname.endsWith('/layout');
   if (isEdit && (olderVersions.length === 0 || newerVersions.length === 0)) {
     return <p>All versions block edit</p>;
   }
