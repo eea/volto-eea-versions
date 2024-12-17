@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDeepCompareEffect from 'use-deep-compare-effect';
@@ -23,9 +22,8 @@ export function withEEAVersions(WrappedComponent) {
       return state.eeaVersions?.data;
     }, memoizedSelector);
 
-    // Only fetch if we don't have the data yet
     useDeepCompareEffect(() => {
-      if (!versions) {
+      if (!versions || versions['@id'].indexOf(base_path) === -1) {
         dispatch(getEEAVersions(base_path));
       }
     }, [base_path, params, versions]);

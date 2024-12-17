@@ -3,6 +3,10 @@ import { withEEAVersions } from './withEEAVersions';
 import { formattedDate } from './helpers';
 import { UniversalLink } from '@plone/volto/components';
 
+const propsAreEqual = (prevProps, nextProps) => {
+  return prevProps['@id'] === nextProps['@id'];
+};
+
 const AllVersions = (props) => {
   const olderVersions = props.versions?.older_versions?.items || [];
   const newerVersions = props.versions?.newer_versions?.items || [];
@@ -47,4 +51,4 @@ const AllVersions = (props) => {
   );
 };
 
-export default withEEAVersions(AllVersions);
+export default React.memo(withEEAVersions(AllVersions), propsAreEqual);
