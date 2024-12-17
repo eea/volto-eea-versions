@@ -1,5 +1,6 @@
 import React from 'react';
 import { withEEAVersions } from './withEEAVersions';
+import { formatDate } from '@plone/volto/helpers/Utils/Date';
 
 const AllVersions = (props) => {
   const olderVersions = props.versions?.older_versions?.items || [];
@@ -7,7 +8,19 @@ const AllVersions = (props) => {
   const properties = props.properties || {};
   const title = properties.title || '';
   const effective = properties.effective || '';
-
+  const formattedEffective =
+    effective &&
+    formatDate({
+      date: effective,
+      format: {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+      },
+      locale: 'en-gb',
+    });
+  const effectiveDate =
+    formattedEffective && formattedEffective ? ' - ' + formattedEffective : '';
   const pathname = props.pathname || props.path || '';
   const isEdit =
     pathname.indexOf('/edit') > -1 || pathname.indexOf('/add') > -1;
@@ -20,16 +33,16 @@ const AllVersions = (props) => {
         newerVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
             <a href={version['@id']} className="eea-versions-list-link">
-              {version.title}
+              {version.title} {effectiveDate}
             </a>
           </li>
         ))}
-      <li>{`(current) ${title} ${effective ? ' - ' + effective : ''}`}</li>
+      <li>{`(current) ${title} ${effectiveDate}`}</li>
       {olderVersions?.length > 0 &&
         olderVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
             <a href={version['@id']} className="eea-versions-list-link">
-              {version.title}
+              {version.title} {effectiveDate}
             </a>
           </li>
         ))}
