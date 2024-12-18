@@ -1,5 +1,5 @@
 import eeaVersions from './reducers';
-import installVersionsBlocks from './blocks';
+import installVersionsBlocks from './Blocks';
 const applyConfig = (config) => {
   config.addonReducers = {
     ...(config.addonReducers || {}),
