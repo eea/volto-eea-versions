@@ -20,7 +20,7 @@ const LatestVersion = (props) => {
     return <p>Latest version block edit</p>;
   }
   return version ? (
-    <p className="report-latest-version">
+    <p className="eea-latest-version">
       <strong>Latest version of this report: </strong>
       <UniversalLink href={version['@id']} className="eea-versions-list-link">
         {version.title} {formattedEffective}
