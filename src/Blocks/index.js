@@ -13,6 +13,9 @@ const applyConfig = (config) => {
     schema: BlockSettingsSchema,
     restricted: false,
     mostUsed: false,
+    blockHasValue: (blockData) => {
+      return blockData.results?.length > 0 ?? false;
+    },
     blockHasOwnFocusManagement: false,
     sidebarTab: 1,
     security: {
