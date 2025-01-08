@@ -35,7 +35,10 @@ const AllVersions = (props) => {
             </UniversalLink>
           </li>
         ))}
-      <li>{`(current) ${title} ${currentEffective}`}</li>
+      {olderVersions.length > 0 ||
+        (newerVersions.length > 0 && (
+          <li>{`(current) ${title} ${currentEffective}`}</li>
+        ))}
       {olderVersions?.length > 0 &&
         olderVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
