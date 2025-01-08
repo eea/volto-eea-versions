@@ -3,6 +3,10 @@ import AllVersions from './AllVersions';
 import LatestVersion from './LatestVersion';
 import BlockSettingsSchema from '@plone/volto/components/manage/Blocks/Block/Schema';
 
+const hasVersionsBlockValue = (blockData) => {
+  return blockData.results ?? false;
+};
+
 const applyConfig = (config) => {
   config.blocks.blocksConfig.eea_latest_version = {
     id: 'eea_latest_version',
@@ -13,6 +17,7 @@ const applyConfig = (config) => {
     schema: BlockSettingsSchema,
     restricted: false,
     mostUsed: false,
+    blockHasValue: hasVersionsBlockValue,
     blockHasOwnFocusManagement: false,
     sidebarTab: 1,
     security: {
@@ -29,6 +34,7 @@ const applyConfig = (config) => {
     view: AllVersions,
     schema: BlockSettingsSchema,
     restricted: false,
+    blockHasValue: hasVersionsBlockValue,
     mostUsed: false,
     blockHasOwnFocusManagement: false,
     sidebarTab: 1,

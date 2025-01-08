@@ -10,6 +10,8 @@ const propsAreEqual = (prevProps, nextProps) => {
 const AllVersions = (props) => {
   const olderVersions = props.versions?.older_versions?.items || [];
   const newerVersions = props.versions?.newer_versions?.items || [];
+  const hasOlderVersions = olderVersions?.length > 0;
+  const hasNewerVersions = newerVersions?.length > 0;
   const properties = props.properties || {};
   const title = properties.title || '';
   const effective = properties.effective || '';
@@ -22,9 +24,10 @@ const AllVersions = (props) => {
   if (isEdit && (olderVersions.length === 0 || newerVersions.length === 0)) {
     return <p>All versions block edit</p>;
   }
-  return (
+
+  return hasOlderVersions || hasNewerVersions ? (
     <ul className="eea-versions">
-      {newerVersions?.length > 0 &&
+      {hasNewerVersions &&
         newerVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
             <UniversalLink
@@ -36,7 +39,7 @@ const AllVersions = (props) => {
           </li>
         ))}
       <li>{`(current) ${title} ${currentEffective}`}</li>
-      {olderVersions?.length > 0 &&
+      {hasOlderVersions &&
         olderVersions.map((version) => (
           <li key={version['@id']} className="eea-versions-list-item">
             <UniversalLink
@@ -48,7 +51,7 @@ const AllVersions = (props) => {
           </li>
         ))}
     </ul>
-  );
+  ) : null;
 };
 
 export default React.memo(withEEAVersions(AllVersions), propsAreEqual);
