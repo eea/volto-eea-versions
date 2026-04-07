@@ -1,7 +1,7 @@
 import React from 'react';
 import { withEEAVersions } from './withEEAVersions';
 import { formattedDate } from './helpers';
-import { UniversalLink } from '@plone/volto/components';
+import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 
 const propsAreEqual = (prevProps, nextProps) => {
   return prevProps['@id'] === nextProps['@id'];
