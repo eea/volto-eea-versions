@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
-import { getEEAVersions } from '../actions';
+import { getEEAVersions } from '@eeacms/volto-eea-versions/actions';
 
 export function withEEAVersions(WrappedComponent) {
   function memoizedSelector(prev, next) {
