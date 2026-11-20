@@ -10,6 +10,24 @@
 
 Demo GIF
 
+## Upgrade
+
+### Upgrading to 3.x
+
+> This version requires `Volto 18` or `Volto 19` and Node.js 22.
+
+No API or behaviour change: the control panel id and route, the exported components and the
+settings keys are the same as 2.x. The release adds Volto 19 support and moves the repository to the
+Volto 19 layout, where the published package lives in `packages/volto-eea-versions`.
+
+#### Breaking changes
+
+- **Node.js 22 or newer is required** (`engines.node >= 22`), 2.x declared no engine.
+- **React 18 is required.** The package declares `react` and `react-dom` as `^18.2.0` peers, 2.x
+  declared no peers.
+- **The package no longer ships the repository tooling.** The Cypress specs and the Jest setup are
+  gone and the unit tests moved to Vitest next to the add-on, so nothing a site imports was removed.
+
 ## Requirements
 
 ### Backend
